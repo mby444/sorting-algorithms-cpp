@@ -17,7 +17,7 @@ void swapValue(int *val1, int *val2)
     *val1 = *val1 - *val2;
 }
 
-void insertionSort(int arr[], int n)
+void selectionSort(int arr[], int n)
 {
     int smallIndex;
 
@@ -49,7 +49,7 @@ int main()
     cout << "Before sorting:" << endl;
     printArray(arr, n);
 
-    insertionSort(arr, n);
+    selectionSort(arr, n);
 
     cout << "After sorting:" << endl;
     printArray(arr, n);
