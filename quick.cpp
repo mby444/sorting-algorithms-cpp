@@ -17,15 +17,15 @@ void swapValue(int *val1, int *val2)
     *val2 = temp;
 }
 
-int partition(int arr[], int n)
+int partition(int arr[], int low, int high)
 {
-    int pivot = n - 1;
-    int i = -1;
-    int j = 0;
+    int &pivot = arr[high];
+    int i = low - 1;
+    int j = low;
 
-    while (j < pivot)
+    while (j < high)
     {
-        if (arr[j] < arr[pivot])
+        if (arr[j] < pivot)
         {
             i++;
             swapValue(&arr[j], &arr[i]);
@@ -34,21 +34,21 @@ int partition(int arr[], int n)
     }
 
     i++;
-    swapValue(&arr[i], &arr[pivot]);
+    swapValue(&arr[i], &pivot);
     return i;
 }
 
-void quickSort(int *arr, int n)
+void quickSort(int *arr, int low, int high)
 {
-    if (n <= 1)
+    if (high <= low)
     {
         return;
     }
 
-    int pivot = partition(arr, n);
+    int pivot = partition(arr, low, high);
 
-    quickSort(arr, pivot);
-    quickSort(arr + pivot + 1, n - pivot - 1);
+    quickSort(arr, low, pivot - 1);
+    quickSort(arr, pivot + 1, high);
 }
 
 int main()
@@ -59,7 +59,7 @@ int main()
     cout << "Before sorting:" << endl;
     printArray(arr, n);
 
-    quickSort(arr, n);
+    quickSort(arr, 0, n - 1);
 
     cout << "After sorting:" << endl;
     printArray(arr, n);
