@@ -19,13 +19,12 @@ void swapValue(int *val1, int *val2)
 
 int partition(int arr[], int low, int high)
 {
-    int &pivot = arr[high];
     int i = low - 1;
     int j = low;
 
     while (j < high)
     {
-        if (arr[j] < pivot)
+        if (arr[j] < arr[high])
         {
             i++;
             swapValue(&arr[j], &arr[i]);
@@ -34,7 +33,7 @@ int partition(int arr[], int low, int high)
     }
 
     i++;
-    swapValue(&arr[i], &pivot);
+    swapValue(&arr[i], &arr[high]);
     return i;
 }
 
